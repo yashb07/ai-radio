@@ -1,48 +1,47 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
-import 'package:collection/collection.dart';
+import 'package:flutter/foundation.dart';
 
-class myRadioList {
+class MyRadioList {
   final List<MyRadio> radios;
-  myRadioList({
+  MyRadioList({
     required this.radios,
   });
 
-  myRadioList copyWith({
-    List<MyRadio>? radios,
+  MyRadioList copyWith({
+    required List<MyRadio> radios,
   }) {
-    return myRadioList(
+    return MyRadioList(
       radios: radios ?? this.radios,
     );
   }
 
   Map<String, dynamic> toMap() {
-    return <String, dynamic>{
-      'radios': radios.map((x) => x.toMap()).toList(),
+    return {
+      'radios': radios?.map((x) => x?.toMap())?.toList(),
     };
   }
 
-  factory myRadioList.fromMap(Map<String, dynamic> map) {
-    return myRadioList(
-      radios: List<MyRadio>.from((map['radios'] as List<int>).map<MyRadio>((x) => MyRadio.fromMap(x as Map<String,dynamic>),),),
+  factory MyRadioList.fromMap(Map<String, dynamic> map) {
+
+    return MyRadioList(
+      radios: List<MyRadio>.from(map['radios']?.map((x) => MyRadio.fromMap(x))),
     );
   }
 
   String toJson() => json.encode(toMap());
 
-  factory myRadioList.fromJson(String source) => myRadioList.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory MyRadioList.fromJson(String source) =>
+      MyRadioList.fromMap(json.decode(source));
 
   @override
-  String toString() => 'myRadioList(radios: $radios)';
+  String toString() => 'MyRadioList(radios: $radios)';
 
   @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-    final listEquals = const DeepCollectionEquality().equals;
-  
-    return other is myRadioList &&
-      listEquals(other.radios, radios);
+  bool operator ==(Object o) {
+    if (identical(this, o)) return true;
+
+    return o is MyRadioList && listEquals(o.radios, radios);
   }
 
   @override
@@ -76,22 +75,22 @@ class MyRadio {
   });
 
   MyRadio copyWith({
-    int? id,
-    int? order,
-    String? name,
-    String? tagline,
-    String? color,
-    String? desc,
-    String? url,
-    String? category,
-    String? icon,
-    String? image,
-    String? lang,
+    required int id,
+    required int order,
+    required String name,
+    required String tagline,
+    required String color,
+    required String desc,
+    required String url,
+    required String category,
+    required String icon,
+    required String image,
+    required String lang,
   }) {
     return MyRadio(
       id: id ?? this.id,
       order: order ?? this.order,
-      name: name ?? this.name,
+      name: name,
       tagline: tagline ?? this.tagline,
       color: color ?? this.color,
       desc: desc ?? this.desc,
@@ -104,7 +103,7 @@ class MyRadio {
   }
 
   Map<String, dynamic> toMap() {
-    return <String, dynamic>{
+    return {
       'id': id,
       'order': order,
       'name': name,
@@ -121,24 +120,24 @@ class MyRadio {
 
   factory MyRadio.fromMap(Map<String, dynamic> map) {
     return MyRadio(
-      id: map['id'] as int,
-      order: map['order'] as int,
-      name: map['name'] as String,
-      tagline: map['tagline'] as String,
-      color: map['color'] as String,
-      desc: map['desc'] as String,
-      url: map['url'] as String,
-      category: map['category'] as String,
-      icon: map['icon'] as String,
-      image: map['image'] as String,
-      lang: map['lang'] as String,
+      id: map['id'],
+      order: map['order'],
+      name: map['name'],
+      tagline: map['tagline'],
+      color: map['color'],
+      desc: map['desc'],
+      url: map['url'],
+      category: map['category'],
+      icon: map['icon'],
+      image: map['image'],
+      lang: map['lang'],
     );
   }
 
   String toJson() => json.encode(toMap());
 
   factory MyRadio.fromJson(String source) =>
-      MyRadio.fromMap(json.decode(source) as Map<String, dynamic>);
+      MyRadio.fromMap(json.decode(source));
 
   @override
   String toString() {
@@ -146,21 +145,21 @@ class MyRadio {
   }
 
   @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
+  bool operator ==(Object o) {
+    if (identical(this, o)) return true;
 
-    return other is MyRadio &&
-        other.id == id &&
-        other.order == order &&
-        other.name == name &&
-        other.tagline == tagline &&
-        other.color == color &&
-        other.desc == desc &&
-        other.url == url &&
-        other.category == category &&
-        other.icon == icon &&
-        other.image == image &&
-        other.lang == lang;
+    return o is MyRadio &&
+        o.id == id &&
+        o.order == order &&
+        o.name == name &&
+        o.tagline == tagline &&
+        o.color == color &&
+        o.desc == desc &&
+        o.url == url &&
+        o.category == category &&
+        o.icon == icon &&
+        o.image == image &&
+        o.lang == lang;
   }
 
   @override
