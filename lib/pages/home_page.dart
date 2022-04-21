@@ -14,12 +14,12 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
-  late List<MyRadio> radios;
+  List<MyRadio>? radios;
 
   @override
   void initState() {
     super.initState();
-    fetchRadios();
+    // fetchRadios();
   }
 
   fetchRadios() async {
@@ -52,8 +52,26 @@ class _HomepageState extends State<Homepage> {
             backgroundColor: Colors.transparent,
             centerTitle: true,
             elevation: 0.0,
-          ).h(100.0).p16()
-        ],
+          ).h(100.0).p16(),
+           VxSwiper.builder(
+              itemCount: 10,
+              height: 50.0,
+              viewportFraction: 0.35,
+              autoPlay: true,
+              autoPlayAnimationDuration: 3.seconds,
+              autoPlayCurve: Curves.linear,
+              enableInfiniteScroll: true,
+              itemBuilder: (context, index) {
+                final s = 1;
+                return Chip(
+                  label: s.text.make().positioned(
+                    top: 500.0,
+                    left: -5.0,
+                  ),
+                );
+              },
+            )
+        ]
       ),
     );
   }
