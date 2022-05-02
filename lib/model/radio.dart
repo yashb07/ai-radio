@@ -6,11 +6,11 @@ import 'package:flutter/foundation.dart';
 class MyRadioList {
   final List<MyRadio> radios;
   MyRadioList({
-    required this.radios,
+    this.radios,
   });
 
   MyRadioList copyWith({
-    List<MyRadio>? radios,
+    List<MyRadio> radios,
   }) {
     return MyRadioList(
       radios: radios ?? this.radios,
@@ -61,31 +61,31 @@ class MyRadio {
   final String image;
   final String lang;
   MyRadio({
-    required this.id,
-    required this.order,
-    required this.name,
-    required this.tagline,
-    required this.color,
-    required this.desc,
-    required this.url,
-    required this.category,
-    required this.icon,
-    required this.image,
-    required this.lang,
+    this.id,
+    this.order,
+    this.name,
+    this.tagline,
+    this.color,
+    this.desc,
+    this.url,
+    this.category,
+    this.icon,
+    this.image,
+    this.lang,
   });
 
   MyRadio copyWith({
-    int? id,
-    int? order,
-    String? name,
-    String? tagline,
-    String? color,
-    String? desc,
-    String? url,
-    String? category,
-    String? icon,
-    String? image,
-    String? lang,
+    int id,
+    int order,
+    String name,
+    String tagline,
+    String color,
+    String desc,
+    String url,
+    String category,
+    String icon,
+    String image,
+    String lang,
   }) {
     return MyRadio(
       id: id ?? this.id,

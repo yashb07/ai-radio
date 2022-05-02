@@ -1,5 +1,5 @@
 // ignore_for_file: prefer_const_constructors
-
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:test_flutter/model/radio.dart';
 import 'package:test_flutter/utils/ai_util.dart';
@@ -7,14 +7,14 @@ import 'package:velocity_x/velocity_x.dart';
 import 'package:flutter/material.dart';
 
 class Homepage extends StatefulWidget {
-  const Homepage({Key? key}) : super(key: key);
+  const Homepage({Key key}) : super(key: key);
 
   @override
   State<Homepage> createState() => _HomepageState();
 }
 
 class _HomepageState extends State<Homepage> {
-  List<MyRadio>? radios;
+  List<MyRadio> radios;
 
   @override
   void initState() {
@@ -54,6 +54,64 @@ class _HomepageState extends State<Homepage> {
             centerTitle: true,
             elevation: 0.0,
           ).h(100.0).p16(),
+          VxSwiper.builder(
+            itemCount: 3,
+            aspectRatio: 1.0,
+            enlargeCenterPage: true,
+            itemBuilder: (context, index) {
+              final rad = radios[index];
+              return VxBox(
+                child: ZStack([ 
+                  Positioned(
+                    top: 0.0,
+                    right: 0.0,
+                    child:VxBox(
+                      child: rad.category.text.uppercase.white.make().px16(),
+                      ).height(40)
+                      .black
+                      .alignCenter
+                      .withRounded(value: 10.0)
+                      .make(),
+                    ),
+                  Align(
+                    alignment: Alignment.bottomCenter,
+                    child: VStack([
+                      rad.name.text.xl3.white.bold.make(),
+                      5.heightBox,
+                      rad.tagline.text.sm.white.semiBold.make(),
+                      ],
+                      crossAlignment: CrossAxisAlignment.center,
+                      ),
+                  ),
+                  Align(
+                    alignment: Alignment.center,
+                    child: [Icon(CupertinoIcons.play_circle,
+                    color: Colors.white,
+                    ),
+                    10.heightBox,
+                    "Double tap to Play".text.gray300.make(),
+                    ].vStack())
+                ],
+                clip: Clip.antiAlias,
+                ),
+              ).clip(Clip.antiAlias)
+                  // .bgImage(
+                  //   DecorationImage(
+                  //       image: NetworkImage(rad.image),
+                  //       fit: BoxFit.cover,
+                  //       colorFilter: ColorFilter.mode(
+                  //           Colors.black.withOpacity(0.3), BlendMode.darken)),
+                  // )
+                  .border(color: Colors.black, width: 5.0)
+                  .withRounded(value: 60.0)
+                  .make()
+                  .onInkDoubleTap(() {
+                    
+                  })
+                  .p16()
+                  .centered();
+            },
+          ),
         ],
         fit: StackFit.expand,
       ),
