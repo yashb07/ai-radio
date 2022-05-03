@@ -11,7 +11,7 @@
                "image": "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/b5df4c18876369.562d0d4bd94cf.jpg",
                "lang": "Hindi",
                "category": "pop",
-               "disliked": false,
+               
                "order": 1
            },
            {
@@ -24,7 +24,7 @@
                "icon": "https://static.mytuner.mobi/media/tvos_radios/2z69hnevkvam.jpeg",
                "image": "https://static.toiimg.com/thumb/msid-72350288,width-800,height-600,resizemode-75,imgsize-302210,pt-32,y_pad-40/72350288.jpg",
                "lang": "Hindi",
-               "disliked": false,
+               
                "category": "rock",
                "order": 2
            },
@@ -38,7 +38,7 @@
                "icon": "http://db.radioline.fr/pictures/radio_1b34ac132310c975f847aed2a948a318/logo200.jpg?size=200",
                "image": "https://www.theknotnews.com/wp-content/uploads/2017/02/Fifty-Shades-Poster.jpg",
                "lang": "English",
-               "disliked": false,
+               
                "category": "hip-hop",
                "order": 3
            },
@@ -53,7 +53,7 @@
                "image": "https://images.esc-plus.com/wp-content/uploads/2016/03/Samra_Rahimli.jpg",
                "lang": "English",
                "category": "hip-hop",
-               "disliked": false,
+               
                "order": 4
            },
            {
@@ -67,7 +67,7 @@
                "image": "https://static.radio.net/images/broadcasts/5d/9c/37907/1/c175.png",
                "lang": "English",
                "category": "jazz",
-               "disliked": false,
+               
                "order": 5
            },
            {
@@ -81,7 +81,7 @@
                "image": "https://i.ytimg.com/vi/BUnPVjqb0YY/maxresdefault.jpg",
                "lang": "English",
                "category": "rock",
-               "disliked": false,
+               
                "order": 6
            },
            {
@@ -95,7 +95,7 @@
                "image": "https://i.bollywoodmantra.com/albums/wallpapers/kismat-konnection/shahid-kapur_vidya-balan___34541.jpg",
                "lang": "Hindi",
                "category": "pop",
-               "disliked": false,
+               
                "order": 7
            },
            {
@@ -109,7 +109,7 @@
                "image": "https://i.pinimg.com/originals/7f/f6/13/7ff613ed815f1eb56a90794ec64eecfe.jpg",
                "lang": "Hindi",
                "category": "classic",
-               "disliked": false,
+               
                "order": 8
            }
    ]
