@@ -30,11 +30,11 @@ class _HomepageState extends State<Homepage> {
     fetchRadios();
 
     _audioPlayer.onPlayerStateChanged.listen((event) {
-      // if (event == AudioPlayerState.PLAYING) {
-      //     _isPlaying = true;
-      // } else {
-      //     _isPlaying = false;
-      // }
+      if (event == PlayerState.PLAYING) {
+          _isPlaying = true;
+      } else {
+          _isPlaying = false;
+      }
       setState(() {});
     });
   }
@@ -52,8 +52,7 @@ class _HomepageState extends State<Homepage> {
 
   _playMusic(String url) {
     _audioPlayer.play(url);
-    _selectedRadio = radios.firstWhere((element) => element.url == url);
-    print(_selectedRadio.name);
+    // _selectedRadio = MyRadioList.radios.firstWhere((element) => element.url == url);
     setState(() {});
   }
 
@@ -83,7 +82,7 @@ class _HomepageState extends State<Homepage> {
             centerTitle: true,
             elevation: 0.0,
           ).h(100.0).p16(),
-          VxSwiper.builder(
+          MyRadioList.radios != null? VxSwiper.builder(
             itemCount: MyRadioList.radios.length,
             aspectRatio: 1.0,
             enlargeCenterPage: true,
@@ -132,7 +131,7 @@ class _HomepageState extends State<Homepage> {
                   .clip(Clip.antiAlias)
                   .bgImage(
                     DecorationImage(
-                        image: NetworkImage(rad.image),
+                        image: Image.network(rad.image).image,
                         fit: BoxFit.cover,
                         colorFilter: ColorFilter.mode(
                             Colors.black.withOpacity(0.3), BlendMode.darken)),
@@ -141,15 +140,18 @@ class _HomepageState extends State<Homepage> {
                   .withRounded(value: 60.0)
                   .make()
                   .onInkDoubleTap(() {
-                _playMusic(rad.url);
-              }).p16();
+                    _playMusic(rad.url);
+                  })
+                  .p16();
             },
-          ).centered(),
+          ).centered(): Center(child: CircularProgressIndicator(
+            backgroundColor: Colors.white,
+          )),
           Align(
             alignment: Alignment.bottomCenter,
             child: [
               if (_isPlaying)
-                "Playing Now - ${_selectedRadio.name} FM".text.makeCentered(),
+                "Playing Now - ${_selectedRadio.name} FM".text.white.makeCentered(),
               Icon(
                 _isPlaying
                     ? CupertinoIcons.stop_circle
