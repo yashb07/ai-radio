@@ -42,9 +42,59 @@ class _HomepageState extends State<Homepage> {
   }
 
   setupAlan() {
-     AlanVoice.addButton(
+    AlanVoice.addButton(
         "5f4c56155288a8a3f6453155660025d82e956eca572e1d8b807a3e2338fdd0dc/stage",
         buttonAlign: AlanVoice.BUTTON_ALIGN_RIGHT);
+    AlanVoice.callbacks.add((command) => _handleCommand(command.data));
+  }
+
+  _handleCommand(Map<String, dynamic> response) {
+    switch (response["command"]) {
+      case "play":
+        _playMusic(_selectedRadio.url);
+        break;
+      case "pause":
+        _audioPlayer.stop();
+        _isPlaying = false;
+        setState(() {});
+        break;
+      case "next":
+        _audioPlayer.stop();
+        final index = _selectedRadio.id;
+        MyRadio newRadio;
+        if (index + 1 > MyRadioList.radios.length) {
+          newRadio =
+              MyRadioList.radios.firstWhere((element) => element.id == 1);
+          MyRadioList.radios.remove(newRadio);
+          MyRadioList.radios.insert(0, newRadio);
+        } else {
+          newRadio = MyRadioList.radios
+              .firstWhere((element) => element.id == index + 1);
+          MyRadioList.radios.remove(newRadio);
+          MyRadioList.radios.insert(0, newRadio);
+        }
+        _playMusic(newRadio.url);
+        break;
+      case "prev":
+        final index = _selectedRadio.id;
+        MyRadio newRadio;
+        if (index - 1 <= 0) {
+          newRadio =
+              MyRadioList.radios.firstWhere((element) => element.id == 1);
+          MyRadioList.radios.remove(newRadio);
+          MyRadioList.radios.insert(0, newRadio);
+        } else {
+          newRadio = MyRadioList.radios
+              .firstWhere((element) => element.id == index - 1);
+          MyRadioList.radios.remove(newRadio);
+          MyRadioList.radios.insert(0, newRadio);
+        }
+        _playMusic(newRadio.url);
+        break;
+      default:
+        print("Unknown command: ${response["command"]}");
+        break;
+    }
   }
 
   fetchRadios() async {
@@ -72,7 +122,36 @@ class _HomepageState extends State<Homepage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: Drawer(),
+      drawer: Drawer(
+        child: Container(
+          color: _selectedColor ?? AIUtil.primaryColor2,
+          child: MyRadioList.radios != null
+              ? [
+                  100.heightBox,
+                  "All Songs".text.xl3.white.semiBold.make().px16(),
+                  20.heightBox,
+                  ListView(
+                    padding: Vx.m0,
+                    shrinkWrap: true,
+                    children: MyRadioList.radios
+                        .map((e) => ListTile(
+                              leading: CircleAvatar(
+                                backgroundImage: NetworkImage(e.image),
+                              ),
+                              title: e.name
+                                  .text
+                                  .xl
+                                  .white
+                                  .semiBold
+                                  .make(),
+                              subtitle: e.tagline.text.white.make(),
+                            ))
+                        .toList(),
+                  ).expand()
+                ].vStack(crossAlignment: CrossAxisAlignment.start)
+              : const Offstage(),
+        ),
+      ),
       body: Stack(
         children: [
           VxAnimatedBox()
@@ -86,19 +165,42 @@ class _HomepageState extends State<Homepage> {
                 end: Alignment.bottomRight,
               ))
               .make(),
-          AppBar(
-            title: "AI Radio".text.xl4.bold.white.make().shimmer(
-                  primaryColor: Vx.purple300,
-                  secondaryColor: Colors.white,
-                ),
-            backgroundColor: Colors.transparent,
-            centerTitle: true,
-            elevation: 0.0,
-          ).h(100.0).p16(),
+          [
+            AppBar(
+              title: "AI Radio".text.xl4.bold.white.make().shimmer(
+                    primaryColor: Vx.purple300,
+                    secondaryColor: Colors.white,
+                  ),
+              backgroundColor: Colors.transparent,
+              centerTitle: true,
+              elevation: 0.0,
+            ).h(100.0).p16(),
+            20.heightBox,
+            "Start with - Hey Alan".text.italic.semiBold.white.make(),
+            10.heightBox,
+            VxSwiper.builder(
+              itemCount: MyRadioList.radios.length,
+              height: 50.0,
+              viewportFraction: 0.35,
+              autoPlay: true,
+              autoPlayAnimationDuration: 3.seconds,
+              autoPlayCurve: Curves.linear,
+              enableInfiniteScroll: true,
+              itemBuilder: (context, index) {
+                final s = MyRadioList.radios[index];
+                return Chip(
+                  label: s.name.text.make(),
+                  backgroundColor: Vx.randomColor,
+                );
+              },
+            )
+          ].vStack(),
+          30.heightBox,
           MyRadioList.radios != null
               ? VxSwiper.builder(
                   itemCount: MyRadioList.radios.length,
                   aspectRatio: 1.0,
+                  // context.mdWindowSize==MobileWindowSize.xsmall?1.0:context.mdWindowSize==MobileWindowSize.medium? 2.0:3.0
                   enlargeCenterPage: true,
                   onPageChanged: (index) {
                     _selectedRadio = MyRadioList.radios[index];
@@ -132,6 +234,7 @@ class _HomepageState extends State<Homepage> {
                                 rad.name.text.xl3.white.bold.make(),
                                 5.heightBox,
                                 rad.tagline.text.sm.white.semiBold.make(),
+                                10.heightBox,
                               ],
                               crossAlignment: CrossAxisAlignment.center,
                             ),
@@ -175,10 +278,8 @@ class _HomepageState extends State<Homepage> {
             alignment: Alignment.bottomCenter,
             child: [
               if (_isPlaying)
-                "Playing Now - ${_selectedRadio.name} FM"
-                    .text
-                    .white
-                    .makeCentered(),
+                "Playing Now - ${_selectedRadio.name}".text.xl2.white.bold.makeCentered(),
+                20.heightBox,
               Icon(
                 _isPlaying
                     ? CupertinoIcons.stop_circle
