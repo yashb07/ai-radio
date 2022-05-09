@@ -1,11 +1,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.test_flutter">
+    <uses-permission android:name="android.permission.INTERNET"/>
    <application
         android:label="test_flutter"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
+            android:usesCleartextTraffic="true"
             android:exported="true"
             android:launchMode="singleTop"
             android:theme="@style/LaunchTheme"

@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 import 'dart:convert';
 
+import 'package:alan_voice/alan_voice.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
@@ -27,16 +28,23 @@ class _HomepageState extends State<Homepage> {
   @override
   void initState() {
     super.initState();
+    setupAlan();
     fetchRadios();
 
     _audioPlayer.onPlayerStateChanged.listen((event) {
-      // if (event == AudioPlayerState.PLAYING) {
-      //     _isPlaying = true;
-      // } else {
-      //     _isPlaying = false;
-      // }
+      if (event == PlayerState.PLAYING) {
+        _isPlaying = true;
+      } else {
+        _isPlaying = false;
+      }
       setState(() {});
     });
+  }
+
+  setupAlan() {
+     AlanVoice.addButton(
+        "5f4c56155288a8a3f6453155660025d82e956eca572e1d8b807a3e2338fdd0dc/stage",
+        buttonAlign: AlanVoice.BUTTON_ALIGN_RIGHT);
   }
 
   fetchRadios() async {
@@ -44,15 +52,19 @@ class _HomepageState extends State<Homepage> {
     final radioJsonDecode = jsonDecode(radioJson);
     // radios = MyRadioList.fromJson(radioJson).radios;
     var radioData = radioJsonDecode["radios"];
-    MyRadioList.radios =
-        List.from(radioData).map<MyRadio>((radio) => MyRadio.fromMap(radio)).toList();
+    MyRadioList.radios = List.from(radioData)
+        .map<MyRadio>((radio) => MyRadio.fromMap(radio))
+        .toList();
     // print(MyRadioList.radios);
+    _selectedRadio = MyRadioList.radios.first;
+    _selectedColor = Color(int.tryParse(_selectedRadio.color));
     setState(() {});
   }
 
   _playMusic(String url) {
     _audioPlayer.play(url);
-    _selectedRadio = radios.firstWhere((element) => element.url == url);
+    _selectedRadio =
+        MyRadioList.radios.firstWhere((element) => element.url == url);
     print(_selectedRadio.name);
     setState(() {});
   }
@@ -67,8 +79,8 @@ class _HomepageState extends State<Homepage> {
               .size(context.screenWidth, context.screenHeight)
               .withGradient(LinearGradient(
                 colors: [
-                  AIUtil.primaryColor1,
                   AIUtil.primaryColor2,
+                  _selectedColor ?? AIUtil.primaryColor1,
                 ],
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
@@ -83,73 +95,90 @@ class _HomepageState extends State<Homepage> {
             centerTitle: true,
             elevation: 0.0,
           ).h(100.0).p16(),
-          VxSwiper.builder(
-            itemCount: MyRadioList.radios.length,
-            aspectRatio: 1.0,
-            enlargeCenterPage: true,
-            itemBuilder: (context, index) {
-              final rad = MyRadioList.radios[index];
-              return VxBox(
-                child: ZStack(
-                  [
-                    Positioned(
-                      top: 0.0,
-                      right: 0.0,
-                      child: VxBox(
-                        child: rad.category.text.uppercase.white.make().px16(),
-                      )
-                          .height(40)
-                          .black
-                          .alignCenter
-                          .withRounded(value: 10.0)
-                          .make(),
-                    ),
-                    Align(
-                      alignment: Alignment.bottomCenter,
-                      child: VStack(
+          MyRadioList.radios != null
+              ? VxSwiper.builder(
+                  itemCount: MyRadioList.radios.length,
+                  aspectRatio: 1.0,
+                  enlargeCenterPage: true,
+                  onPageChanged: (index) {
+                    _selectedRadio = MyRadioList.radios[index];
+                    final colorHex = MyRadioList.radios[index].color;
+                    _selectedColor = Color(int.tryParse(colorHex));
+                    setState(() {});
+                  },
+                  itemBuilder: (context, index) {
+                    final rad = MyRadioList.radios[index];
+                    return VxBox(
+                      child: ZStack(
                         [
-                          rad.name.text.xl3.white.bold.make(),
-                          5.heightBox,
-                          rad.tagline.text.sm.white.semiBold.make(),
-                        ],
-                        crossAlignment: CrossAxisAlignment.center,
-                      ),
-                    ),
-                    Align(
-                        alignment: Alignment.center,
-                        child: [
-                          Icon(
-                            CupertinoIcons.play_circle,
-                            color: Colors.white,
+                          Positioned(
+                            top: 0.0,
+                            right: 0.0,
+                            child: VxBox(
+                              child: rad.category.text.uppercase.white
+                                  .make()
+                                  .px16(),
+                            )
+                                .height(40)
+                                .black
+                                .alignCenter
+                                .withRounded(value: 10.0)
+                                .make(),
                           ),
-                          10.heightBox,
-                          "Double tap to Play".text.gray300.make(),
-                        ].vStack())
-                  ],
-                  clip: Clip.antiAlias,
-                ),
-              )
-                  .clip(Clip.antiAlias)
-                  .bgImage(
-                    DecorationImage(
-                        image: NetworkImage(rad.image),
-                        fit: BoxFit.cover,
-                        colorFilter: ColorFilter.mode(
-                            Colors.black.withOpacity(0.3), BlendMode.darken)),
-                  )
-                  .border(color: Colors.black, width: 5.0)
-                  .withRounded(value: 60.0)
-                  .make()
-                  .onInkDoubleTap(() {
-                _playMusic(rad.url);
-              }).p16();
-            },
-          ).centered(),
+                          Align(
+                            alignment: Alignment.bottomCenter,
+                            child: VStack(
+                              [
+                                rad.name.text.xl3.white.bold.make(),
+                                5.heightBox,
+                                rad.tagline.text.sm.white.semiBold.make(),
+                              ],
+                              crossAlignment: CrossAxisAlignment.center,
+                            ),
+                          ),
+                          Align(
+                              alignment: Alignment.center,
+                              child: [
+                                Icon(
+                                  CupertinoIcons.play_circle,
+                                  color: Colors.white,
+                                ),
+                                10.heightBox,
+                                "Double tap to Play".text.gray300.make(),
+                              ].vStack())
+                        ],
+                        clip: Clip.antiAlias,
+                      ),
+                    )
+                        .clip(Clip.antiAlias)
+                        .bgImage(
+                          DecorationImage(
+                              image: Image.network(rad.image).image,
+                              fit: BoxFit.cover,
+                              colorFilter: ColorFilter.mode(
+                                  Colors.black.withOpacity(0.3),
+                                  BlendMode.darken)),
+                        )
+                        .border(color: Colors.black, width: 5.0)
+                        .withRounded(value: 60.0)
+                        .make()
+                        .onInkDoubleTap(() {
+                      _playMusic(rad.url);
+                    }).p16();
+                  },
+                ).centered()
+              : Center(
+                  child: CircularProgressIndicator(
+                  backgroundColor: Colors.white,
+                )),
           Align(
             alignment: Alignment.bottomCenter,
             child: [
               if (_isPlaying)
-                "Playing Now - ${_selectedRadio.name} FM".text.makeCentered(),
+                "Playing Now - ${_selectedRadio.name} FM"
+                    .text
+                    .white
+                    .makeCentered(),
               Icon(
                 _isPlaying
                     ? CupertinoIcons.stop_circle

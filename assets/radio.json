@@ -11,50 +11,46 @@
                "image": "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/b5df4c18876369.562d0d4bd94cf.jpg",
                "lang": "Hindi",
                "category": "pop",
-               
                "order": 1
            },
            {
-               "id": 2,
+            "id": 2,
+            "name": "104",
+            "tagline": "Ruth B",
+            "color": "0xff066c53",
+            "desc": "Dendelions by Ruth B",
+            "url": "https://vmlbox.com/wp-content/uploads/2022/01/Ruth-B-Dandelions-vmlboxcom.mp3",
+            "icon": "https://radiosindia.com/images/foxfm.jpg",
+            "image": "https://i.scdn.co/image/ab67616d0000b27397e971f3e53475091dc8d707",
+            "lang": "English",
+            "category": "hip-hop",
+            "order": 4
+        },
+           {
+               "id": 3,
                "name": "98.3",
-               "tagline": "Gaano Ka Sweet Dish",
+               "tagline": "Weeknd for your weekend",
                "color": "0xff221420",
                "desc": "There are few activities in life that utilizes the entire brain, and music is one of them.",
-               "url": "https://meethimirchihdl-lh.akamaihd.net/i/MeethiMirchiHDLive_1_1@320572/master.m3u8",
+               "url": "https://www1.morexlusive.com/wp-content/uploads/2021/10/Swedish_House_Mafia_The_Weeknd_-_Moth_To_A_Flame.mp3",
                "icon": "https://static.mytuner.mobi/media/tvos_radios/2z69hnevkvam.jpeg",
-               "image": "https://static.toiimg.com/thumb/msid-72350288,width-800,height-600,resizemode-75,imgsize-302210,pt-32,y_pad-40/72350288.jpg",
-               "lang": "Hindi",
-               
-               "category": "rock",
+               "image": "https://www.goldderby.com/wp-content/uploads/2020/11/the-weeknd.jpg?w=620&h=360&crop=1",
+               "lang": "English",
+               "category": "R&B",
                "order": 2
            },
            {
-               "id": 3,
+               "id": 4,
                "name": "102",
-               "tagline": "Play On!",
+               "tagline": "Feel the beats!",
                "color": "0xff04080b",
                "desc": "Playing music regularly will physically alter your brain structure.",
                "url": "http://node-14.zeno.fm/cm1fkgbv1ceuv?rj-ttl=5&rj-token=AAABa7Pm__WhrF8jIJ36of_AC5C-TeMcqPiHC5BJB1j1JxkowiWAyQ",
                "icon": "http://db.radioline.fr/pictures/radio_1b34ac132310c975f847aed2a948a318/logo200.jpg?size=200",
-               "image": "https://www.theknotnews.com/wp-content/uploads/2017/02/Fifty-Shades-Poster.jpg",
+               "image": "https://imgix.ranker.com/list_img_v2/1957/2841957/original/best-male-pop-artists-2020?w=817&h=427&fm=jpg&q=50&fit=crop",
                "lang": "English",
-               
                "category": "hip-hop",
                "order": 3
-           },
-           {
-               "id": 4,
-               "name": "104",
-               "tagline": "English Hits",
-               "color": "0xff066c53",
-               "desc": "",
-               "url": "https://mp3quack.app/mp3/Moth-To-A-Flame",
-               "icon": "https://radiosindia.com/images/foxfm.jpg",
-               "image": "https://i.ytimg.com/vi/0KrtxH4V71s/sddefault.jpg",
-               "lang": "English",
-               "category": "hip-hop",
-               
-               "order": 4
            },
            {
                "id": 5,
@@ -62,12 +58,11 @@
                "tagline": "London UK Asian Music",
                "color": "0xff0d487d",
                "desc": "",
-               "url": "https://mp3quack.app/mp3/Moth-To-A-Flame",
+               "url": "https://mp3indirdur.life/Linkin-Park-Burn-It-Down-96201?dinle=1",
                "icon": "https://static.radio.net/images/broadcasts/5d/9c/37907/1/c175.png",
-               "image": "https://i.ytimg.com/vi/0KrtxH4V71s/sddefault.jpg",
+               "image": "https://th.bing.com/th/id/R.d4254392ce58a8b5ac1474d11e9d3ad1?rik=akD3gsMjRmKevg&riu=http%3a%2f%2f3.bp.blogspot.com%2f-G_Gd6nn_8Ic%2fT_pIZCsYw0I%2fAAAAAAAAAOY%2f0BcAn4Nn-7k%2fw1200-h630-p-k-no-nu%2flinkin-park-burn-it-down.jpg&ehk=wTDzVZCDAZS1UuGjPBFzNNYKy6XLacCz3Nd5FD%2bMOqE%3d&risl=&pid=ImgRaw&r=0",
                "lang": "English",
                "category": "jazz",
-               
                "order": 5
            },
            {
@@ -76,12 +71,11 @@
                "tagline": "Today's Hits",
                "color": "0xff27383e",
                "desc": "",
-               "url": "https://mp3quack.app/mp3/Moth-To-A-Flame",
+               "url": "https://ayaziqbal.com/wp-content/uploads/2022/02/Glass-Animals-Heat-Waves.mp3",
                "icon": "https://static.radio.net/images/broadcasts/8d/76/3600/1/c175.png",
-               "image": "https://i.ytimg.com/vi/0KrtxH4V71s/sddefault.jpg",
+               "image": "https://upload.wikimedia.org/wikipedia/en/1/11/Dreamland_%28Glass_Animals%29.png",
                "lang": "English",
                "category": "rock",
-               
                "order": 6
            },
            {
@@ -90,12 +84,11 @@
                "tagline": "Love Songs",
                "color": "0xffa06a37",
                "desc": "The brain responds to music the same way it responds to something that you eat.",
-               "url": "https://wmirchi-lh.akamaihd.net/i/WMIRCHI_1@75780/index_1_a-p.m3u8?sd=10&rebase=on",
+               "url": "https://mio.to/IU3p",
                "icon": "https://mytuner.global.ssl.fastly.net/media/tvos_radios/4evkagl48buu.jpeg",
-               "image": "https://i.bollywoodmantra.com/albums/wallpapers/kismat-konnection/shahid-kapur_vidya-balan___34541.jpg",
+               "image": "https://i.ytimg.com/vi/0KrtxH4V71s/sddefault.jpg",
                "lang": "Hindi",
                "category": "pop",
-               
                "order": 7
            },
            {
@@ -109,7 +102,6 @@
                "image": "https://i.ytimg.com/vi/0KrtxH4V71s/sddefault.jpg",
                "lang": "Hindi",
                "category": "classic",
-               
                "order": 8
            }
    ]
