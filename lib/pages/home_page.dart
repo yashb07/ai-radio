@@ -167,7 +167,7 @@ class _HomepageState extends State<Homepage> {
               .make(),
           [
             AppBar(
-              title: "AI Radio".text.xl4.bold.white.make().shimmer(
+              title: "Musicality".text.xl4.bold.white.make().shimmer(
                     primaryColor: Vx.purple300,
                     secondaryColor: Colors.white,
                   ),

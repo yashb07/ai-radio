@@ -10,7 +10,7 @@
                "icon": "https://mytuner.global.ssl.fastly.net/media/tvos_radios/m8afyszryaqt.png",
                "image": "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/b5df4c18876369.562d0d4bd94cf.jpg",
                "lang": "Hindi",
-               "category": "pop",
+               "category": "fun",
                "order": 1
            },
            {
@@ -23,7 +23,7 @@
             "icon": "https://radiosindia.com/images/foxfm.jpg",
             "image": "https://i.scdn.co/image/ab67616d0000b27397e971f3e53475091dc8d707",
             "lang": "English",
-            "category": "hip-hop",
+            "category": "acoustic",
             "order": 4
         },
            {
@@ -36,7 +36,7 @@
                "icon": "https://static.mytuner.mobi/media/tvos_radios/2z69hnevkvam.jpeg",
                "image": "https://www.goldderby.com/wp-content/uploads/2020/11/the-weeknd.jpg?w=620&h=360&crop=1",
                "lang": "English",
-               "category": "R&B",
+               "category": "pop",
                "order": 2
            },
            {
@@ -49,7 +49,7 @@
                "icon": "http://db.radioline.fr/pictures/radio_1b34ac132310c975f847aed2a948a318/logo200.jpg?size=200",
                "image": "https://imgix.ranker.com/list_img_v2/1957/2841957/original/best-male-pop-artists-2020?w=817&h=427&fm=jpg&q=50&fit=crop",
                "lang": "English",
-               "category": "hip-hop",
+               "category": "pop",
                "order": 3
            },
            {
@@ -62,7 +62,7 @@
                "icon": "https://static.radio.net/images/broadcasts/5d/9c/37907/1/c175.png",
                "image": "https://th.bing.com/th/id/R.d4254392ce58a8b5ac1474d11e9d3ad1?rik=akD3gsMjRmKevg&riu=http%3a%2f%2f3.bp.blogspot.com%2f-G_Gd6nn_8Ic%2fT_pIZCsYw0I%2fAAAAAAAAAOY%2f0BcAn4Nn-7k%2fw1200-h630-p-k-no-nu%2flinkin-park-burn-it-down.jpg&ehk=wTDzVZCDAZS1UuGjPBFzNNYKy6XLacCz3Nd5FD%2bMOqE%3d&risl=&pid=ImgRaw&r=0",
                "lang": "English",
-               "category": "jazz",
+               "category": "rock",
                "order": 5
            },
            {
@@ -75,7 +75,7 @@
                "icon": "https://static.radio.net/images/broadcasts/8d/76/3600/1/c175.png",
                "image": "https://upload.wikimedia.org/wikipedia/en/1/11/Dreamland_%28Glass_Animals%29.png",
                "lang": "English",
-               "category": "rock",
+               "category": "pop",
                "order": 6
            },
            {
@@ -88,7 +88,7 @@
                "icon": "https://mytuner.global.ssl.fastly.net/media/tvos_radios/4evkagl48buu.jpeg",
                "image": "https://www.pinkvilla.com/imageresize/aheera.jpg?width=752&format=webp&t=pvorg",
                "lang": "Hindi",
-               "category": "pop",
+               "category": "c-rap",
                "order": 7
            },
            {
@@ -101,7 +101,7 @@
                "icon": "https://mytuner.global.ssl.fastly.net/media/tvos_radios/uvclzz6a6d7x.jpeg",
                "image": "https://images.genius.com/873e6480e39f372757df11f3ffb1e228.1000x1000x1.jpg",
                "lang": "Kannada",
-               "category": "classic",
+               "category": "hiphop",
                "order": 8
            }
    ]
